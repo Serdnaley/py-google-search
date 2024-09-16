@@ -31,10 +31,10 @@ def perform_search():
 
     return jsonify(results)
 
-@app.route('/parse', methods=['POST'])
+@app.route('/parse', methods=['GET'])
 async def parse_urls():
-    data = request.get_json()
-    urls = data.get('urls', [])
+    urls = request.args.get('urls')
+    urls = urls.split(',')
     if not urls:
         return jsonify({"error": "No URLs provided"}), 400
 

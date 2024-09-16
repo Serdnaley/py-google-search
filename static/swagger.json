@@ -52,7 +52,7 @@
       }
     },
     "/parse": {
-      "post": {
+      "get": {
         "summary": "Parse web pages",
         "requestBody": {
           "required": true,
