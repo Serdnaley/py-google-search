@@ -34,6 +34,10 @@ def perform_search():
 @app.route('/parse', methods=['GET'])
 async def parse_urls():
     urls = request.args.get('urls')
+
+    if not urls:
+        return jsonify({"error": "No URLs provided"}), 400
+
     urls = urls.split(',')
     if not urls:
         return jsonify({"error": "No URLs provided"}), 400
