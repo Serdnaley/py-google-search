@@ -3,3 +3,4 @@ googlesearch-python
 requests
 beautifulsoup4
 flask-swagger-ui
+aiohttp

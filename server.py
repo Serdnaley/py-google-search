@@ -1,8 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_swagger_ui import get_swaggerui_blueprint
 from googlesearch import search
-import requests
-from bs4 import BeautifulSoup
+from page_parser import process_links
 
 app = Flask(__name__)
 
@@ -30,6 +29,16 @@ def perform_search():
         "snippet": result.description,
     } for result in search(query, num_results=20, sleep_interval=3, advanced=True)]
 
+    return jsonify(results)
+
+@app.route('/parse', methods=['POST'])
+async def parse_urls():
+    data = request.get_json()
+    urls = data.get('urls', [])
+    if not urls:
+        return jsonify({"error": "No URLs provided"}), 400
+
+    results = await process_links(urls)
     return jsonify(results)
 
 if __name__ == '__main__':

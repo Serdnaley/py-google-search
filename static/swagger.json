@@ -3,7 +3,7 @@
   "info": {
     "title": "Search API",
     "version": "1.0.0",
-    "description": "API for performing web searches"
+    "description": "API for performing web searches and parsing web pages"
   },
   "paths": {
     "/search": {
@@ -37,6 +37,62 @@
                         "type": "string"
                       },
                       "snippet": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/parse": {
+      "post": {
+        "summary": "Parse web pages",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "urls": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": ["urls"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "url": {
+                        "type": "string"
+                      },
+                      "title": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "content": {
                         "type": "string"
                       }
                     }
