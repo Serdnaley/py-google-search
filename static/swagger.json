@@ -54,25 +54,17 @@
     "/parse": {
       "get": {
         "summary": "Parse web pages",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "urls": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "required": ["urls"]
-              }
-            }
+        "parameters": [
+          {
+            "in": "query",
+            "name": "urls",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Comma-separated list of URLs to parse"
           }
-        },
+        ],
         "responses": {
           "200": {
             "description": "Successful response",
