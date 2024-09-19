@@ -27,7 +27,7 @@ def perform_search():
         "link": result.url,
         "title": result.title,
         "snippet": result.description,
-    } for result in search(query, num_results=20, sleep_interval=3, advanced=True)]
+    } for result in search(query, num_results=20, advanced=True)]
 
     return jsonify(results)
 
